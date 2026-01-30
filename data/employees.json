@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Aliyev Sardor",
+    "position": "Bosh farmatsevt",
+    "phone": "+998 90 123 45 67",
+    "email": "sardor@dorixona.uz",
+    "experience": "8 yil"
+  },
+  {
+    "id": 2,
+    "name": "Karimova Dilnoza",
+    "position": "Farmatsevt",
+    "phone": "+998 91 234 56 78",
+    "email": "dilnoza@dorixona.uz",
+    "experience": "5 yil"
+  },
+  {
+    "id": 3,
+    "name": "Toshmatov Javohir",
+    "position": "Farmatsevt",
+    "phone": "+998 93 345 67 89",
+    "email": "javohir@dorixona.uz",
+    "experience": "3 yil"
+  },
+  {
+    "id": 4,
+    "name": "Rashidova Malika",
+    "position": "Kassir",
+    "phone": "+998 94 456 78 90",
+    "email": "malika@dorixona.uz",
+    "experience": "2 yil"
+  },
+  {
+    "id": 5,
+    "name": "Umarov Jasur",
+    "position": "Farmatsevt",
+    "phone": "+998 95 567 89 01",
+    "email": "jasur@dorixona.uz",
+    "experience": "4 yil"
+  },
+  {
+    "id": 6,
+    "name": "Azimova Nigora",
+    "position": "Farmatsevt-konsultant",
+    "phone": "+998 97 678 90 12",
+    "email": "nigora@dorixona.uz",
+    "experience": "6 yil"
+  },
+  {
+    "id": 7,
+    "name": "Saidov Bobur",
+    "position": "Ombor mudiri",
+    "phone": "+998 98 789 01 23",
+    "email": "bobur@dorixona.uz",
+    "experience": "7 yil"
+  },
+  {
+    "id": 8,
+    "name": "Xolmatova Sevara",
+    "position": "Kassir",
+    "phone": "+998 99 890 12 34",
+    "email": "sevara@dorixona.uz",
+    "experience": "1 yil"
+  }
+]

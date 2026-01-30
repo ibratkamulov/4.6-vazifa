@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h2>👥 Hodimlar ro'yxati</h2>
+  
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ism-familiya</th>
+          <th>Lavozim</th>
+          <th>Telefon</th>
+          <th>Email</th>
+          <th>Tajriba</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employees.forEach(employee => { %>
+          <tr>
+            <td><%= employee.id %></td>
+            <td><%= employee.name %></td>
+            <td><span class="badge badge-position"><%= employee.position %></span></td>
+            <td><%= employee.phone %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.experience %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="info-box">
+    <strong>Eslatma:</strong> Hodimlar uchun faqat READ (ko'rish) funksiyasi qo'shilgan.
+    To'liq CRUD operatsiyalari Dorilar bo'limida mavjud.
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <div class="hero-section">
+    <h2><%= message %></h2>
+    <p class="subtitle">Zamonaviy dorixona boshqaruv tizimi</p>
+  </div>
+  
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <h3>Hodimlar</h3>
+      <p>Hodimlar ma'lumotlarini boshqarish va ko'rish</p>
+      <a href="/employees" class="btn btn-primary">Ko'rish</a>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">💊</div>
+      <h3>Dorilar</h3>
+      <p>Dorilar bazasini to'liq boshqarish (CRUD)</p>
+      <a href="/medicines" class="btn btn-primary">Boshqarish</a>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Hisobotlar</h3>
+      <p>Statistika va hisobotlar (Kelajakda)</p>
+      <button class="btn btn-secondary" disabled>Tez orada</button>
+    </div>
+  </div>
+  
+  <div class="info-section">
+    <h3>📚 Tizim imkoniyatlari:</h3>
+    <ul class="features-list">
+      <li>✅ Modular arxitektura (MVC pattern)</li>
+      <li>✅ Express framework</li>
+      <li>✅ EJS template engine</li>
+      <li>✅ Static fayllar (CSS, rasmlar)</li>
+      <li>✅ To'g'ri HTTP metodlar (GET, POST)</li>
+      <li>✅ To'g'ri HTTP status kodlar (200, 201, 404, 500)</li>
+      <li>✅ CRUD operatsiyalari (Dorilar uchun)</li>
+    </ul>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <h2>✏️ Dorini tahrirlash</h2>
+  
+  <div class="form-container">
+    <form action="/medicines/edit/<%= medicine.id %>" method="POST" class="medicine-form">
+      <div class="form-group">
+        <label for="name">Dori nomi *</label>
+        <input type="text" id="name" name="name" required value="<%= medicine.name %>">
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="price">Narxi (so'm) *</label>
+          <input type="number" id="price" name="price" required min="0" step="100" value="<%= medicine.price %>">
+        </div>
+        
+        <div class="form-group">
+          <label for="quantity">Miqdori *</label>
+          <input type="number" id="quantity" name="quantity" required min="0" value="<%= medicine.quantity %>">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="manufacturer">Ishlab chiqaruvchi *</label>
+        <input type="text" id="manufacturer" name="manufacturer" required value="<%= medicine.manufacturer %>">
+      </div>
+      
+      <div class="form-group">
+        <label for="expiryDate">Yaroqlilik muddati *</label>
+        <input type="date" id="expiryDate" name="expiryDate" required value="<%= medicine.expiryDate %>">
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Ta'rif</label>
+        <textarea id="description" name="description" rows="4"><%= medicine.description %></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">💾 Yangilash</button>
+        <a href="/medicines" class="btn btn-secondary">❌ Bekor qilish</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
