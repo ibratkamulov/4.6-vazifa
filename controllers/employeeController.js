@@ -1,76 +1,55 @@
 const fs = require('fs');
 const path = require('path');
 
-// Ma'lumotlar faylini o'qish
-const getEmployeesData = () => {
+// Ma'lumotlarni o'qish
+function getEmployeesData() {
   try {
     const filePath = path.join(__dirname, '../data/employees.json');
-    
-    console.log('📂 Fayl yo\'li:', filePath);
-    
-    // Fayl mavjudligini tekshirish
-    if (!fs.existsSync(filePath)) {
-      console.error('❌ employees.json fayli topilmadi!');
-      console.error('❌ Tekshirilgan yo\'l:', filePath);
-      return [];
-    }
-    
-    console.log('✅ Fayl topildi');
-    
     const data = fs.readFileSync(filePath, 'utf-8');
-    console.log('✅ Fayl o\'qildi, uzunligi:', data.length, 'belgi');
-    
-    const employees = JSON.parse(data);
-    console.log('✅ JSON parse qilindi, hodimlar soni:', employees.length);
-    
-    return employees;
+    return JSON.parse(data);
   } catch (error) {
-    console.error('❌ Xatolik yuz berdi:');
-    console.error('   Xato turi:', error.name);
-    console.error('   Xato xabari:', error.message);
-    
-    if (error instanceof SyntaxError) {
-      console.error('   ⚠️ JSON syntax xatosi! employees.json faylini tekshiring');
-    }
-    
+    console.error('employees.json xatosi:', error.message);
     return [];
   }
-};
+}
 
-// Barcha hodimlarni ko'rsatish
-const getAllEmployees = (req, res) => {
+// Hodimlar ro'yxati
+exports.getAllEmployees = (req, res) => {
   try {
-    console.log('\n' + '='.repeat(50));
-    console.log('👥 HODIMLAR sahifasi so\'raldi');
-    console.log('='.repeat(50));
-    
     const employees = getEmployeesData();
     
-    console.log('📊 Render ma\'lumotlari:');
-    console.log('   - Hodimlar soni:', employees.length);
-    console.log('   - Birinchi hodim:', employees[0] ? employees[0].name : 'Yo\'q');
+    const headerPath = path.join(__dirname, '../views/partials/header.html');
+    const footerPath = path.join(__dirname, '../views/partials/footer.html');
+    const templatePath = path.join(__dirname, '../views/employees.html');
     
-    if (employees.length === 0) {
-      console.warn('⚠️ OGOHLANTIRISH: Hodimlar ro\'yxati bo\'sh!');
-    }
+    const header = fs.readFileSync(headerPath, 'utf-8');
+    const footer = fs.readFileSync(footerPath, 'utf-8');
+    let content = fs.readFileSync(templatePath, 'utf-8');
     
-    res.status(200).render('employees', {
-      title: 'Hodimlar ro\'yxati',
-      employees: employees
+    // Hodimlarni HTML'ga aylantirish
+    let employeesHTML = '';
+    employees.forEach(emp => {
+      employeesHTML += `
+        <tr>
+          <td>${emp.id}</td>
+          <td>${emp.name}</td>
+          <td><span class="badge badge-position">${emp.position}</span></td>
+          <td>${emp.phone}</td>
+          <td>${emp.email}</td>
+          <td>${emp.experience}</td>
+        </tr>
+      `;
     });
     
-    console.log('✅ Sahifa muvaffaqiyatli render qilindi\n');
-  } catch (error) {
-    console.error('\n❌ getAllEmployees xatosi:');
-    console.error('   Xato:', error.message);
-    console.error('   Stack:', error.stack);
+    content = content.replace('{{employees}}', employeesHTML);
     
-    res.status(500).send(`
-      <h1>Server xatosi</h1>
-      <p>Xato: ${error.message}</p>
-      <a href="/">Bosh sahifaga qaytish</a>
-    `);
+    const html = header + content + footer;
+    
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(html);
+  } catch (error) {
+    console.error('Xato:', error);
+    res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('<h1>Server xatosi</h1>');
   }
 };
-
-module.exports = getAllEmployees
